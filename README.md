@@ -28,7 +28,7 @@ $ python -m venv demo_env
 ```
 `you then need to activate the virtual environment`  
 ```
-$ souce demo_env/bin/activate 
+$ source demo_env/bin/activate 
 ```
 `you can then clone the API project from github`         
 ```
