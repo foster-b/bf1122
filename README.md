@@ -9,6 +9,7 @@ Demo API
 2. [Assumptions](#assumptions)
 3. [URL Examples](#url-examples)
 4. [Python Requests Examples](#python-requests-examples)
+5. [Testing](#testing)
 
 ## Installation
 ***
@@ -155,7 +156,7 @@ print(r.json())
 print()
 ```        
 
-##### `Example of Response from /api/v1.0/rental_agreement`
+###### `Example of Response from /api/v1.0/rental_agreement`
 ```json
 <Response [200]>
 {
@@ -186,3 +187,7 @@ print()
 | `404` | `Requested resource doesn't exist` |
 
 `Errors will also be thrown for rental days entered that isn't at least 1. And for discount percentages greater than 100.`
+
+#### `Testing`
+
+`after you have the API running you can use the *testing.py* script to test it.`
