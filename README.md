@@ -16,49 +16,53 @@ Demo API
 #### Python Virtual Environment Installation        
 `(Note) if you already have virtualenv installed you can skip this first step`
 ```
-$ `pip install virtualenv`
+$ pip install virtualenv
 ```
 `create a project directory and then change working directory to it`
 ```
-$ `mkdir demo && cd demo`  
+$ mkdir demo && cd demo  
 ```
 `create a virtual environment by running`
 ```
-$ `python -m venv demo_env` 
+$ python -m venv demo_env
 ```
 `you then need to activate the virtual environment`  
 ```
-`$ souce demo_env/bin/activate`  
+$ souce demo_env/bin/activate 
 ```
 `you can then clone the API project from github`         
 ```
-`$ git clone https://github.com/foster-b/bf1122.git`           
+$ git clone https://github.com/foster-b/bf1122.git           
+```
+`change to directory bf1122`
+```
+$ cd bf1122
 ```
 `install the dependencies`          
 ```
-`$ python pip install -r requirements.txt`
+$ pip install -r requirements.txt
 ```
 `to start running the API in the virtual environment use the following command`
 ```
-`$ python app.py`
+$ python app.py
 ```
 
 #### `Using Docker`
 `clone the API project from github`
 ```
-`$ git clone https://github.com/foster-b/bf1122.git`
+$ git clone https://github.com/foster-b/bf1122.git`
 ```
 `change to directory bf1122`
 ```
-`$ cd bf1122`
+$ cd bf1122
 ```
 `build the docker image`
 ```
-`$ docker build -t demo_api .`
+$ docker build -t demo_api .
 ```
 `run the container`
 ```
-`$docker run -d -p 5000:5000 -rm demo_api`
+$ docker run -d -p 5000:5000 -rm demo_api
 ```
 
 ### `Assumptions`
