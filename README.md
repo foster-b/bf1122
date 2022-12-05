@@ -6,71 +6,74 @@ Demo API
 ## Table of Contents
 1. [Installation](#installation)
 2. [Assumptions](#assumptions)
-3. [URL Examples](#url-examples)
-4. [Python Requests Examples](#python-requests-examples)
-5. [Testing](#testing)
+3. [URL Format](#url-format)
+4. [URL Examples](#url-examples)
+5. [Python Requests Examples](#python-requests-examples)
+6. [Responses](#responses)
+7. [Errors](#errors)
+8. [Testing](#testing)
 
 ## Installation
 ***
 #### Python Virtual Environment Installation        
-`(Note) if you already have virtualenv installed you can skip this first step`
+- `(Note) if you already have virtualenv installed you can skip this first step`
 ```
 $ pip install virtualenv
 ```
-`create a project directory and then change working directory to it`
+- `create a project directory and then change working directory to it`
 ```
 $ mkdir demo && cd demo  
 ```
-`create a virtual environment by running`
+- `create a virtual environment by running`
 ```
 $ python -m venv demo_env
 ```
-`you then need to activate the virtual environment`  
+- `you then need to activate the virtual environment`  
 ```
 $ source demo_env/bin/activate 
 ```
-`you can then clone the API project from github`         
+- `you can then clone the API project from github`         
 ```
 $ git clone https://github.com/foster-b/bf1122.git           
 ```
-`change to directory bf1122`
+- `change to directory bf1122`
 ```
 $ cd bf1122
 ```
-`install the dependencies`          
+- `install the dependencies`          
 ```
 $ pip install -r requirements.txt
 ```
-`to start running the API in the virtual environment use the following command`
+- `to start running the API in the virtual environment use the following command`
 ```
 $ python app.py
 ```
 
 #### `Using Docker`
-`clone the API project from github`
+- `clone the API project from github`
 ```
 $ git clone https://github.com/foster-b/bf1122.git`
 ```
-`change to directory bf1122`
+- `change to directory bf1122`
 ```
 $ cd bf1122
 ```
-`build the docker image`
+- `build the docker image`
 ```
 $ docker build -t demo_api .
 ```
-`run the container`
+- `run the container`
 ```
 $ docker run -d -p 5000:5000 -rm demo_api
 ```
 
 ### `Assumptions`
 
-1. `dates will be entered in the format mm/dd/yy`      
-2. `all dates will be in the 21st century`     
-3. `since this is for internal testing and users would be verified when logging into company's system, there is no need to authentication or    authorization. Therefore headers will not require an API key.`         
-4. `users will use the API responsibly. there won't be users spamming or excessively calling the API, no denial-of-service (DoS) attacks. without this assumption I would want to implement rate-limiting the API`
-5. `there are two holidays July 4th and Labor Day`
+- `dates will be entered in the format mm/dd/yy`      
+- `all dates will be in the 21st century`     
+- `since this is for internal testing and users would be verified when logging into company's system, there is no need to authentication or    authorization. Therefore headers will not require an API key.`         
+- `users will use the API responsibly. there won't be users spamming or excessively calling the API, no denial-of-service (DoS) attacks. without this assumption I would want to implement rate-limiting the API`
+- `there are two holidays July 4th and Labor Day`
 
 ### `URL Format`
 ***
@@ -190,9 +193,9 @@ print()
 }
 ```
 
-#### `Errors`
+#### `Responses`
 
-`Conventional HTTP response codes are used to indicate if the API request was a success or a failure. 2xx range indicates success. 4xx indicates error (a required parameter is missing, etc.)`
+`Conventional HTTP response codes are used to indicate if the API request was a success or a failure. 2xx range indicates success.`
 
 | `HTTP` | `Status Codes` |
 | :----: | :----: |
@@ -201,7 +204,9 @@ print()
 | `400` | `Bad Request (usually a required parameter is missing)` |
 | `404` | `Requested resource doesn't exist` |
 
-`Errors will also be thrown for rental days entered that isn't at least 1. And for discount percentages greater than 100.`
+#### `Errors`
+- `4xx response indicates an error (a required parameter is missing, etc.). For rental_agreement and rental_cost there are required parameters`
+- `Errors will be thrown for rental days entered that isn't at least 1. And for discount percentages greater than 100.`
 
 #### `Testing`
 
