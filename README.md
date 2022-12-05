@@ -1,7 +1,6 @@
 Demo API             
 =========
 
-
 `RESTful API that allows users to insert, update and retreive data via HTTP methods POST, PUT, and GET.`             
 
 ## Table of Contents
@@ -67,20 +66,32 @@ $ docker run -d -p 5000:5000 -rm demo_api
 
 ### `Assumptions`
 
-`1. dates will be entered in the format mm/dd/yy`      
-`2. all dates will be in the 20th century`     
-`3. since this is for internal testing and users would be verified when logging into company's system, there is no need to authentication or authorization.     Headers will not require an API key.`       
-`4. two holidays July 4th and Labor Day`
+1. `dates will be entered in the format mm/dd/yy`      
+2. `all dates will be in the 21st century`     
+3. `since this is for internal testing and users would be verified when logging into company's system, there is no need to authentication or    authorization. Therefore headers will not require an API key.`         
+4. `users will use the API responsibly. there won't be users spamming or excessively calling the API, no denial-of-service (DoS) attacks. without this assumption I would want to implement rate-limiting the API`
+5. `there are two holidays July 4th and Labor Day`
 
+### `URL Format`
+***
+`http://{host}:{port}/api/{version}/{resource}?{parameters}`
+
+| `Name` | `Type` | `Value` |
+|:----: | :---- | :---- |
+| <sub>`host`</sub>| <sub>`domain name or ip address of the host that serves the API`</sub> | <sub>`in this demo it will be localhost` </sub> |
+| <sub>`port`</sub> | <sub>`port number that can accept http connections`</sub> | <sub>`this demo uses 5000`</sub> |
+| <sub>`version`</sub> | <sub>`breaking changes made to API (change in format of the response data for a call, change in response type, etc.) will be given a new version number,  non-breaking changes (adding new endpoints, etc.) will be given a new release number`</sub> | <sub>`new version: v1.0 -> v2.0, new release v2.2 -> v2.3`</sub> |
+| <sub>`resource`</sub> | <sub>`entity whose data will be queried, updated, inserted. (in this demo data they are in-memory)` </sub> | <sub>`inventory, rental_cost, rental_agreement`</sub> |  
+| <sub>`parameters`</sub> | <sub>`data to be sent in request` </sub> | <sub>`for `**`inventory`** `it is an optional tool_code,` **`rental_cost`** `it is required tool_type and for` **`rental_agreement`** `it is required tool_code, rental_days, checkout_date and discount_percent`</sub> |
 
 ### `URL Examples:`
 ##### `retreiving data about tool code CHNS`    
 ```
-`http://127.0.0.1:5000/api/v1.0/inventory`
+http://127.0.0.1:5000/api/v1.0/inventory
 ```
 ##### `getting a rental agreement for tool code CHNS, to be rented 30 days, starting 12/01/22 with a 5 percent discount`    
 ```
-`http:127.0.0.1:5000/api/v1.0/rental_agreement?tool_code=CHNS&rental_days=30&checkout_date=12/01/22&discount_percent=5`
+http:127.0.0.1:5000/api/v1.0/rental_agreement?tool_code=CHNS&rental_days=30&checkout_date=12/01/22&discount_percent=5
 ```
 
 ### `Python Requests Examples`     
